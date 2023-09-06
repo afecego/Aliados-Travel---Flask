@@ -40,3 +40,8 @@ def otro():
 
     if request.method == 'GET':
         return jsonify('Aprendiendo aun de metodos HTTP')
+
+@app.route('/hello/')
+@app.route('/hello/<name>')
+def hello(name=None):
+    return render_template('hello_world.html', name=name)
