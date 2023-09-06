@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
@@ -31,3 +31,12 @@ def libro(libro):
         message = f'Libro "{libro}" no fue encontrado.'
         return(message)
 
+@app.route('/adicional', methods=['POST', 'GET'])
+def otro():
+    if request.method == 'POST':
+        body = request.get_json()
+        numer = body.get('numer')
+        return jsonify(F'Mi edad es: {numer}')
+
+    if request.method == 'GET':
+        return jsonify('Aprendiendo aun de metodos HTTP')
